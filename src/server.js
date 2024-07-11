@@ -20,6 +20,4 @@ httpServer.listen(PORT, () => {
 
 const io = new Server(httpServer);
 
-io.on("connection", (socket) => {
-  console.log("A connection was detected. Client ID:", socket.id);
-});
+export default io;
