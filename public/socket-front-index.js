@@ -7,3 +7,13 @@ socket.emit("get-documents", (documents) => {
     insertDocumentLink(document.name);
   });
 });
+
+function emitAddDocument(name) {
+  socket.emit("add-document", name);
+}
+
+socket.on("add-document-interface", (name) => {
+  insertDocumentLink(name);
+});
+
+export { emitAddDocument };
