@@ -23,4 +23,15 @@ function updateDocument(name, text) {
   return update;
 }
 
-export { findDocument, updateDocument, getDocuments, addDocument };
+async function deleteDocument(name) {
+  const result = await documentsCollection.deleteOne({ name });
+  return result;
+}
+
+export {
+  findDocument,
+  updateDocument,
+  getDocuments,
+  addDocument,
+  deleteDocument,
+};
