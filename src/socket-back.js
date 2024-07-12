@@ -18,10 +18,10 @@ const documents = [
 io.on("connection", (socket) => {
   console.log("A connection was detected. Client ID:", socket.id);
 
-  socket.on("select-document", (name) => {
+  socket.on("select-document", (name, returnText) => {
     const document = findDocument(name);
 
-    console.log(document);
+    if (document) returnText(document.text);
 
     socket.join(name);
   });

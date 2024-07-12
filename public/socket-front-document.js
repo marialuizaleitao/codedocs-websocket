@@ -3,7 +3,9 @@ import { updateTextEditor } from "./document.js";
 const socket = io();
 
 function selectDocument(name) {
-  socket.emit("select-document", name);
+  socket.emit("select-document", name, (text) => {
+    updateTextEditor(text);
+  });
 }
 
 function emitTextEditor(text, documentName) {
