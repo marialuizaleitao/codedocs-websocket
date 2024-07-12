@@ -1,20 +1,5 @@
 import io from "./server.js";
 
-const documents = [
-  {
-    name: "JavaScript",
-    text: "JavaScript code...",
-  },
-  {
-    name: "Node",
-    text: "Node.js code...",
-  },
-  {
-    name: "Socket.io",
-    text: "Socket.io code...",
-  },
-];
-
 io.on("connection", (socket) => {
   console.log("A connection was detected. Client ID:", socket.id);
 
