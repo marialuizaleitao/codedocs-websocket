@@ -1,24 +1,21 @@
 import { documentsCollection } from "./dbConnect.js";
 
+function getDocuments() {
+  const documents = documentsCollection.find().toArray();
+  return documents;
+}
+
 function findDocument(name) {
   const document = documentsCollection.findOne({ name });
-
   return document;
 }
 
 function updateDocument(name, text) {
   const update = documentsCollection.updateOne(
-    {
-      name,
-    },
-    {
-      $set: {
-        text,
-      },
-    }
+    { name },
+    { $set: { text } }
   );
-
   return update;
 }
 
-export { findDocument, updateDocument };
+export { findDocument, updateDocument, getDocuments };
