@@ -13,10 +13,16 @@ io.on("connection", (socket) => {
   });
 
   socket.on("add-document", async (name) => {
-    const result = await addDocument(name);
+    const documentExists = (await findDocument(name)) !== null;
 
-    if (result.acknowledged) {
-      io.emit("add-document-interface", name);
+    if (documentExists) {
+      socket.emit("document-exists", name);
+    } else {
+      const result = await addDocument(name);
+
+      if (result.acknowledged) {
+        io.emit("add-document-interface", name);
+      }
     }
   });
 
