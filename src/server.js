@@ -7,7 +7,7 @@ import { Server } from "socket.io";
 import "./dbConnect.js";
 
 const app = express();
-const PORT = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 const currentPath = url.fileURLToPath(import.meta.url);
 const publicDir = path.join(currentPath, "../..", "public");
@@ -16,8 +16,8 @@ app.use(express.static(publicDir));
 
 const httpServer = http.createServer(app);
 
-httpServer.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+httpServer.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
 const io = new Server(httpServer);
