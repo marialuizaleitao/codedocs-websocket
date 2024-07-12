@@ -27,7 +27,12 @@ io.on("connection", (socket) => {
   });
 
   socket.on("text-editor", (text, documentName) => {
-    socket.to(documentName).emit("text-editor-clients", text);
+    const document = findDocument(documentName);
+
+    if (document) {
+      document.text = text;
+      socket.to(documentName).emit("text-editor-clients", text);
+    }
   });
 });
 
