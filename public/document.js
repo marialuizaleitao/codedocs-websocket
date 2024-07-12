@@ -1,4 +1,4 @@
-import { emitTextEditor } from "./socket-front-document.js";
+import { emitTextEditor, selectDocument } from "./socket-front-document.js";
 
 const params = new URLSearchParams(window.location.search);
 const documentName = params.get("name");
@@ -8,8 +8,10 @@ const documentTitle = document.getElementById("document-title");
 
 documentTitle.textContent = documentName || "Document title is empty";
 
+selectDocument(documentName);
+
 textEditor.addEventListener("keyup", () => {
-  emitTextEditor(textEditor.value);
+  emitTextEditor(textEditor.value, documentName);
 });
 
 function updateTextEditor(text) {
